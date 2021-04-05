@@ -1,48 +1,22 @@
-package com.project.app.ws.io.entity;
+package com.project.app.ws.shared.dto;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
-@Entity(name="users")
-public class UserEntity implements Serializable {
-    private static final long serialVersionID = 1L;
-
-    @Id
-    @GeneratedValue
+public class UserDto implements Serializable {
+    private static final long serialVersionId = 1L;
     private long id;
-
-    @Column(nullable = false)
     private String userId;
-
-    @Column(nullable = false,length = 50)
     private String firstName;
-
-    @Column(nullable = false,length = 50)
     private String lastName;
-
-//    @Column(nullable = false,length = 100, unique = true)
-    @Column(nullable = false,length = 100)
     private String email;
-
-    @Column(nullable = false)
+    private String password;
     private String encryptedPassword;
-
     private String emailVerificationToken;
-
-    @Column(nullable = false)
     private Boolean emailVerificationStatus = false;
-
-    @OneToMany(mappedBy = "userDetails", cascade = CascadeType.ALL)
-    private List<AddressEntity> addresses;
-
-    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable( name = "users_role",
-                joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
-                inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id")
-    )
-    private Collection<RoleEntity> roles;
+    private List<AddressDTO> addresses;
+    private Collection<String> roles;
 
     public long getId() {
         return id;
@@ -74,6 +48,12 @@ public class UserEntity implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
     public String getEncryptedPassword() {
         return encryptedPassword;
     }
@@ -92,16 +72,16 @@ public class UserEntity implements Serializable {
     public void setEmailVerificationStatus(Boolean emailVerificationStatus) {
         this.emailVerificationStatus = emailVerificationStatus;
     }
-    public List<AddressEntity> getAddresses() {
+    public List<AddressDTO> getAddresses() {
         return addresses;
     }
-    public void setAddresses(List<AddressEntity> addresses) {
+    public void setAddresses(List<AddressDTO> addresses) {
         this.addresses = addresses;
     }
-    public Collection<RoleEntity> getRoles() {
+    public Collection<String> getRoles() {
         return roles;
     }
-    public void setRoles(Collection<RoleEntity> roles) {
+    public void setRoles(Collection<String> roles) {
         this.roles = roles;
     }
 }
