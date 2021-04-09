@@ -50,15 +50,15 @@ public class InitialUsersSetup {
         if(roleAdmin == null) return;
 
         UserEntity adminUser = new UserEntity();
-        adminUser.setFirstName("Eugen");
-        adminUser.setLastName("Mirce");
-        adminUser.setEmail("eugen.el92@hotmail.com");
+        adminUser.setFirstName("Geraldo");
+        adminUser.setLastName("Shkembi");
+        adminUser.setEmail("aldo.shkembi1998@gmail.com");
         adminUser.setEmailVerificationStatus(true);
         adminUser.setUserId(utils.generateUserId(30));
         adminUser.setEncryptedPassword(bCryptPasswordEncoder.encode("12345678"));
         adminUser.setRoles(Arrays.asList(roleAdmin));
 
-        UserEntity storedUserDetails = userRepository.findByEmail("eugen.el92@hotmail.com");
+        UserEntity storedUserDetails = userRepository.findByEmail("aldo.shkembi1998@gmail.com");
         if (storedUserDetails == null) {
             userRepository.save(adminUser);
         }
