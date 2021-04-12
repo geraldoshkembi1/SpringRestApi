@@ -84,7 +84,7 @@ public class UserController {
         UserDto createdUser = userService.updateUser(userId,userDto);
         return modelMapper.map(createdUser, UserRest.class);
     }
-    @PreAuthorize("hasRole('ROLE_ADMIN') or #id == principal.userId")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or #userId == principal.userId")
     @DeleteMapping(
             path = "/{userId}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
